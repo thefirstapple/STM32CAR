@@ -124,7 +124,19 @@ static void Car_SpinCheck(void)
   Motor_SetSpeed(0, 30);                      /* 3) 只有右轮（AIN / PWMA） */
   HAL_Delay(CAR_SELFTEST_SPIN_MS);
   Motor_Stop();
-  HAL_Delay(150U);
+  HAL_Delay(300U);
+
+  /* 4) 原地左转 —— 演示 OUT1/OUT2 那一侧的直角弯速度 */
+  Motor_SetSpeed(-(int16_t)CAR_CORNER_SPEED, (int16_t)CAR_CORNER_SPEED);
+  HAL_Delay(CAR_SELFTEST_CORNER_MS);
+  Motor_Stop();
+  HAL_Delay(400U);
+
+  /* 5) 原地右转 —— 演示 OUT4/OUT5 那一侧的直角弯速度 */
+  Motor_SetSpeed((int16_t)CAR_CORNER_SPEED_RIGHT, -(int16_t)CAR_CORNER_SPEED_RIGHT);
+  HAL_Delay(CAR_SELFTEST_CORNER_MS);
+  Motor_Stop();
+  HAL_Delay(200U);
 }
 #endif
 
